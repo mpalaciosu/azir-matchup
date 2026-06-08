@@ -6,6 +6,12 @@ matchup comment from a trusted spreadsheet, then a briefing of 3 tips ranked
 highest-to-lowest impact, synthesized from that comment plus real
 [r/AzirMains](https://www.reddit.com/r/AzirMains/) threads.
 
+## About the author
+
+I'm an Azir main (peak Diamond 1), passionate about the champion and about AI.
+I play mostly on LAS. This project is where those two interests meet: turning a
+trusted matchup spreadsheet plus community knowledge into a fast, in-game read.
+
 ## Attribution
 
 The matchup ratings and advice (`matchups.json`) were authored by
@@ -57,6 +63,12 @@ This skill is tuned for one user's environment, so to run it yourself:
 
 Invoke the skill with a champion name (e.g. `Zed`, `lb`, `cho`). To rebuild the
 cache from the source sheet, use the `--refresh` flow described in `SKILL.md`.
+
+## Contributing
+
+Collaboration is welcome, especially from fellow Azir players and people who like
+building with AI. If you want to contribute (new matchups, better tips, code
+improvements, or ideas), open an issue/PR or email me at martinpalaciosu@gmail.com.
 
 ## License
 
