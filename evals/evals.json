@@ -1,0 +1,26 @@
+{
+  "skill_name": "azir-matchup",
+  "evals": [
+    {
+      "id": 0,
+      "name": "zed-happy-path",
+      "prompt": "I'm an Azir player. Using this matchup spreadsheet https://docs.google.com/spreadsheets/d/YOUR_DRIVE_FILE_ID/edit?gid=0#gid=0 -- when I give you a champion, read its comment in the sheet, print the comment exactly as written, and then give me a briefing on how to play the matchup. No data is better than fake data. Champion: Zed",
+      "expected_output": "Prints Zed's verbatim Matchup Advice from the sheet (difficulty 'Skill Matchup'), then a briefing of 3 tips ranked by impact, sourced from r/AzirMains (with links) plus the spreadsheet, NOT a translation/restatement of the comment.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "naafiri-empty-cell",
+      "prompt": "I'm an Azir player. Using this matchup spreadsheet https://docs.google.com/spreadsheets/d/YOUR_DRIVE_FILE_ID/edit?gid=0#gid=0 -- when I give you a champion, read its comment in the sheet, print the comment exactly as written, and then give me a briefing on how to play the matchup. No data is better than fake data. Champion: Naafiri",
+      "expected_output": "Recognizes Naafiri IS a row in the sheet but the advice cell is empty, says so honestly (does not invent a spreadsheet comment), then still delivers a 3-tip briefing from r/AzirMains with sources.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "hwei-not-in-sheet",
+      "prompt": "I'm an Azir player. Using this matchup spreadsheet https://docs.google.com/spreadsheets/d/YOUR_DRIVE_FILE_ID/edit?gid=0#gid=0 -- when I give you a champion, read its comment in the sheet, print the comment exactly as written, and then give me a briefing on how to play the matchup. No data is better than fake data. Champion: Hwei",
+      "expected_output": "Recognizes Hwei is NOT listed in the sheet at all, says so honestly (no invented comment), then still delivers a 3-tip briefing from r/AzirMains with sources.",
+      "files": []
+    }
+  ]
+}

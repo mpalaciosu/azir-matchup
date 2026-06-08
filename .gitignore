@@ -1,0 +1,8 @@
+# Runtime state (machine-specific; contains your Drive fileId and timestamps)
+.update-state.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

@@ -1,0 +1,7 @@
+{
+  "lastCheckedAt": null,
+  "cachedDriveModifiedTime": null,
+  "cacheGeneratedAt": null,
+  "driveFileId": "YOUR_DRIVE_FILE_ID",
+  "notes": "Copy this to .update-state.json. lastCheckedAt throttles the daily background update check (>24h). cachedDriveModifiedTime is the Drive modifiedTime captured the last time matchups.json was rebuilt via scripts/build_matchups.py."
+}
