@@ -84,6 +84,7 @@ invoke it with a champion name. See `SKILL.md` for the full flow.
 |---|---|
 | `SKILL.md` | The skill instructions Claude Code follows. |
 | `matchups.json` | The matchup data (BodyThoseFools's sheet, see Attribution). |
+| `azir-patches.md` | Verified Azir patch & rune/mechanic interaction reference (source of truth for mechanic answers). |
 | `scripts/lookup.py` | Fast champion lookup + name-matching. |
 | `scripts/reddit_tips.py` | Pulls r/AzirMains discussion. |
 | `scripts/build_matchups.py` | Rebuilds `matchups.json` from the source sheet. |
