@@ -1,24 +1,64 @@
 # Azir Matchup Coach
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-8A2BE2)
+![Champion: Azir](https://img.shields.io/badge/Champion-Azir-c8aa6e)
+
 A [Claude Code](https://claude.com/claude-code) skill that gives a fast, pre-game
 read on an Azir laning matchup. You name the enemy champion; it prints the exact
 matchup comment from a trusted spreadsheet, then a briefing of 3 tips ranked
 highest-to-lowest impact, synthesized from that comment plus real
-[r/AzirMains](https://www.reddit.com/r/AzirMains/) threads.
+[r/AzirMains](https://www.reddit.com/r/AzirMains/) threads. Fast enough to read
+while champ select ticks down.
 
-## About the author
+## Demo
 
-I'm an Azir main (peak Diamond 1), passionate about the champion and about AI.
-I play mostly on LAS. This project is where those two interests meet: turning a
-trusted matchup spreadsheet plus community knowledge into a fast, in-game read.
+A run against Zed looks like this (trimmed):
 
-## Attribution
+```
+Azir vs. Zed (spreadsheet rating: Skill Matchup)
 
-The matchup ratings and advice (`matchups.json`) were authored by
-**BodyThoseFools**, from his League of Legends Azir guide. They are reproduced
-here verbatim, with full credit to him. The data is not covered by this
-repository's code license (see `LICENSE`). If you are the author and want it
-taken down, please open an issue.
+Spreadsheet comment (verbatim):
+  Dodge his Qs or you will get poked down and be in his all-in kill range...
+  At level 6 on when he Ults you, you can buffer your Ult and knock him away...
+
+Briefing: 3 tips, highest to lowest impact:
+
+1. At 6, ult him back toward his shadow, not into your tower (biggest swing)
+   ...forces all his Q shurikens to come from one direction so you survive the all-in.
+   Source: r/AzirMains "Azir vs Zed" + spreadsheet
+
+2. Punish the empty windows: dodge Q, then step up when W or Q is down
+   Source: r/AzirMains "Azir vs Zed" + spreadsheet
+
+3. Buy Zhonya's/Seeker's into him and just scale
+   Source: spreadsheet + r/AzirMains
+```
+
+> A short GIF of a live run is on the to-do list. The lookup itself is instant;
+> the Reddit pull and the briefing take a few seconds.
+
+## Quickstart
+
+The matchup data ships in `matchups.json`, so the lookup works out of the box
+with nothing but Python (standard library only):
+
+```bash
+git clone https://github.com/mpalaciosu/azir-matchup.git
+cd azir-matchup
+python scripts/lookup.py "Zed"     # also accepts lb, cho, asol, etc.
+```
+
+For the r/AzirMains pull, install the one dependency:
+
+```bash
+pip install -r requirements.txt
+python scripts/reddit_tips.py "Zed"
+```
+
+To use it as a real skill (the intended experience), drop this folder into your
+Claude Code commands directory (e.g. `~/.claude/commands/azir-matchup`) and
+invoke it with a champion name. See `SKILL.md` for the full flow.
 
 ## How it works
 
@@ -41,28 +81,26 @@ taken down, please open an issue.
 | File | Purpose |
 |---|---|
 | `SKILL.md` | The skill instructions Claude Code follows. |
-| `matchups.json` | Local cache of the sheet (BodyThoseFools's data). |
+| `matchups.json` | The matchup data (BodyThoseFools's sheet, see Attribution). |
 | `scripts/lookup.py` | Fast champion lookup + name-matching. |
 | `scripts/reddit_tips.py` | Pulls r/AzirMains discussion. |
 | `scripts/build_matchups.py` | Rebuilds `matchups.json` from the source sheet. |
 | `evals/evals.json` | Eval cases for the skill. |
 | `.update-state.example.json` | Template for runtime update-check state. |
 
-## Setup
+## Configuration & refresh
 
-This skill is tuned for one user's environment, so to run it yourself:
+To point the skill at your own copy of the sheet:
 
-1. Put your own matchup data in `matchups.json` (or point `build_matchups.py` at
-   your source and regenerate). Set `YOUR_DRIVE_FILE_ID` placeholders to your
-   Google Drive sheet id if you use the refresh flow.
-2. `scripts/reddit_tips.py` needs the `redditwarp` package. The paths in
-   `SKILL.md` assume `%USERPROFILE%\.claude\...`; adjust to your layout.
+1. Replace the `YOUR_DRIVE_FILE_ID` placeholders (in `SKILL.md`, `matchups.json`,
+   `scripts/build_matchups.py`) with your Google Drive spreadsheet id if you use
+   the refresh flow, then rebuild with `scripts/build_matchups.py`.
+2. The paths in `SKILL.md` assume `%USERPROFILE%\.claude\...`; adjust to your
+   layout.
 3. Copy `.update-state.example.json` to `.update-state.json`.
 
-## Usage
-
-Invoke the skill with a champion name (e.g. `Zed`, `lb`, `cho`). To rebuild the
-cache from the source sheet, use the `--refresh` flow described in `SKILL.md`.
+To rebuild the cache from the source sheet, use the `--refresh` flow described in
+`SKILL.md`.
 
 ## Beyond Azir: extending to other champions
 
@@ -75,14 +113,29 @@ point the Reddit helper at the relevant subreddit, and you have the same fast,
 sourced, in-game read for a completely different champion.
 
 If you main another champion and there's a spreadsheet like that for it, I'd love
-to build a version together. Write to me and let's see how far we can take it.
+to build a version together. See `PORTING.md` for how, and write to me so we can
+see how far we take it.
+
+## About the author
+
+I'm an Azir main (peak Diamond 1), passionate about the champion and about AI.
+I play mostly on LAS. This project is where those two interests meet: turning a
+trusted matchup spreadsheet plus community knowledge into a fast, in-game read.
+
+## Attribution
+
+The matchup ratings and advice (`matchups.json`) were authored by
+**BodyThoseFools**, from his League of Legends Azir guide. They are reproduced
+here verbatim, with full credit to him. The data is not covered by this
+repository's code license (see `LICENSE`). If you are the author and want it
+taken down, please open an issue.
 
 ## Contributing
 
 Collaboration is welcome, especially from fellow Azir players and people who like
-building with AI. If you want to contribute (new matchups, better tips, code
-improvements, a port to another champion, or ideas), open an issue/PR or email me
-at martinpalaciosu@gmail.com.
+building with AI. New matchups, better tips, code improvements, a port to another
+champion, or ideas: open an issue/PR, read `CONTRIBUTING.md`, or email me at
+martinpalaciosu@gmail.com.
 
 ## License
 

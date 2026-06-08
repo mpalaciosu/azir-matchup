@@ -1,0 +1,3 @@
+# Dependency for scripts/reddit_tips.py (the r/AzirMains pull).
+# lookup.py and build_matchups.py use the Python standard library only.
+redditwarp
