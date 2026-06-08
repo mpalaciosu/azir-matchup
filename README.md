@@ -1,5 +1,7 @@
 # Azir Matchup Coach
 
+![Azir Matchup Coach: Azir, Claude Code and r/AzirMains](assets/banner.jpg)
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Claude Code skill](https://img.shields.io/badge/Claude%20Code-skill-8A2BE2)
 ![Champion: Azir](https://img.shields.io/badge/Champion-Azir-c8aa6e)
