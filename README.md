@@ -64,11 +64,25 @@ This skill is tuned for one user's environment, so to run it yourself:
 Invoke the skill with a champion name (e.g. `Zed`, `lb`, `cho`). To rebuild the
 cache from the source sheet, use the `--refresh` flow described in `SKILL.md`.
 
+## Beyond Azir: extending to other champions
+
+Nothing here is Azir-specific at its core. The same approach works for any
+champion that has a classic, well-respected matchup spreadsheet backed by a
+strong data source, the kind a dedicated one-trick or coach maintains. A clear
+example is Talon with the Yedaoshen spreadsheet, and there are players of that
+style across many champions. Swap in that champion's sheet as the trusted source,
+point the Reddit helper at the relevant subreddit, and you have the same fast,
+sourced, in-game read for a completely different champion.
+
+If you main another champion and there's a spreadsheet like that for it, I'd love
+to build a version together. Write to me and let's see how far we can take it.
+
 ## Contributing
 
 Collaboration is welcome, especially from fellow Azir players and people who like
 building with AI. If you want to contribute (new matchups, better tips, code
-improvements, or ideas), open an issue/PR or email me at martinpalaciosu@gmail.com.
+improvements, a port to another champion, or ideas), open an issue/PR or email me
+at martinpalaciosu@gmail.com.
 
 ## License
 
